@@ -108,7 +108,7 @@
             <div class="flex items-center gap-12">
                 <div class="logo-container">
                     <div class="logo-glow"></div>
-                    <img src="/logo.svg" alt="Ruwaad Logo" class="h-16 w-auto relative z-10">
+                    <img src="logo.svg" alt="Ruwaad Logo" class="h-16 w-auto relative z-10">
                 </div>
 
                 <div class="hidden lg:flex gap-8 text-sm font-bold tracking-widest uppercase">
@@ -273,7 +273,7 @@
             <div class="lg:col-span-2 space-y-10">
                 <div class="logo-container">
                     <div class="logo-glow"></div>
-                    <img src="/logo.svg" alt="Ruwaad Tech" class="h-20 w-auto">
+                    <img src="logo.svg" alt="Ruwaad Tech" class="h-20 w-auto">
                 </div>
                 <p class="text-2xl text-gray-400 leading-relaxed max-w-xl">
                     شركة رواد هي المنصة العراقية الرائدة في تقديم الحلول البرمجية المتكاملة. نلتزم بأعلى معايير الجودة العالمية لنرتقي بقطاع التكنولوجيا في بلدنا.
@@ -444,7 +444,7 @@
             // ب. البحث في السيرفر (MongoDB) إذا لم يجد محلياً
             if(!reply) {
                 try {
-                    const res = await fetch('http://localhost:3000/api/chat', {
+                    const res = await fetch('https://ruwaad-site.vercel.app/api/chat', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({ text: userMsg })
@@ -481,7 +481,7 @@
             const btn = e.target.querySelector('button');
             btn.innerText = "جاري الإرسال...";
             try {
-                const res = await fetch('http://localhost:3000/api/contact', {
+                const res = await fetch('https://ruwaad-site.vercel.app/api/contact', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
