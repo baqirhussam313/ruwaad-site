@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيقات الجوال | RUWAAD TECH</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-glow: radial-gradient(rgba(0, 210, 255, 0.4), rgba(0, 210, 255, 0));
+            --navy-deep: #050a1e;
+            --accent-cyan: #00d2ff;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--navy-deep);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .glass-card {
+            background: rgba(21, 36, 83, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 210, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 15px 30px -10px rgba(0, 210, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="grid-bg">
+
+    <header class="fixed top-0 w-full z-50 bg-navy-deep/80 backdrop-blur-md border-b border-white/5 py-4">
+        <div class="max-w-[1400px] mx-auto flex justify-between items-center px-10">
+            <a href="index.html" class="flex items-center gap-3 text-cyan-400 hover:text-white transition font-bold">
+                <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+            </a>
+            <img src="logo.svg" alt="Ruwaad Logo" class="h-12 w-auto">
+        </div>
+    </header>
+
+    <main class="pt-40 pb-20 px-10 max-w-[1400px] mx-auto">
+        
+        <div class="text-center space-y-6 mb-24">
+            <div class="inline-block p-4 rounded-full bg-white/10 mb-4 border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                <i class="fa-solid fa-mobile-screen-button text-5xl text-white"></i>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black">تطوير <span class="text-gradient">تطبيقات الجوال</span></h1>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                في عصر السرعة، تطبيقك هو واجهة عملك. في رواد، نصمم ونبرمج تطبيقات ذكية تعمل بسلاسة على أنظمة iOS و Android، لتقديم تجربة مستخدم لا تُنسى تربط عملائك بعلامتك التجارية في كل مكان وزمان.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+            
+            <div class="glass-card p-8 rounded-3xl border-cyan-500/30">
+                <i class="fa-solid fa-layer-group text-4xl text-[#02569B] mb-6"></i>
+                <h3 class="text-2xl font-black mb-4 text-cyan-400">Flutter & Dart</h3>
+                <p class="text-gray-400 leading-relaxed text-sm">
+                    تطوير تطبيق واحد يشتغل على الأيفون والأندرويد بنفس الوقت (Cross-Platform) بكفاءة عالية جداً. هذا يوفر عليك الوقت ويقلل تكلفة البرمجة للنصف بدون التنازل عن الجودة.
+                </p>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl">
+                <div class="flex gap-4 mb-6">
+                    <i class="fa-brands fa-apple text-4xl text-gray-200"></i>
+                    <i class="fa-brands fa-android text-4xl text-[#3DDC84]"></i>
+                </div>
+                <h3 class="text-2xl font-black mb-4">Native Development</h3>
+                <p class="text-gray-400 leading-relaxed text-sm">
+                    للمشاريع الضخمة التي تتطلب أداءً خارقاً وتعامل مباشر مع عتاد الجهاز (الكاميرا، الحساسات)، نوفر برمجة أصلية (Native) باستخدام Swift و Kotlin لتجربة خالية من التقطيع.
+                </p>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl">
+                <i class="fa-solid fa-wand-magic-sparkles text-4xl text-[#FF2D20] mb-6"></i>
+                <h3 class="text-2xl font-black mb-4">تصميم واجهات (UI/UX)</h3>
+                <p class="text-gray-400 leading-relaxed text-sm">
+                    البرمجة القوية تحتاج تصميم يخطف الأنظار. نصمم واجهات عصرية، سهلة الاستخدام، ومدروسة علمياً لتسهيل رحلة المستخدم داخل التطبيق وزيادة نسبة تفاعله مع خدماتك.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="bg-[#050a1e] border border-cyan-500/30 p-12 rounded-[3rem] text-center relative overflow-hidden shadow-2xl shadow-cyan-500/10">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full filter blur-[80px]"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full filter blur-[80px]"></div>
+            <div class="relative z-10 space-y-8">
+                <h2 class="text-4xl font-black text-white">لديك فكرة تطبيق تريد تحويلها لواقع؟</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">من الفكرة إلى رفع التطبيق على (App Store و Google Play)، نحن معك خطوة بخطوة.</p>
+                <div class="flex justify-center gap-4">
+                    <a href="index.html#contact" class="bg-cyan-500 text-navy-deep px-10 py-4 rounded-full font-black text-lg hover:bg-white transition shadow-lg shadow-cyan-500/20">
+                        ابدأ مشروعك الآن
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
