@@ -336,5 +336,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 });
+// --- كود الماوس الاحترافي ---
+const cursorDot = document.querySelector(".cursor-dot");
+const cursorOutline = document.querySelector(".cursor-outline");
+
+// التأكد إننا مو على موبايل (لأن الموبايل ما بي ماوس)
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+if (!isTouchDevice && cursorDot && cursorOutline) {
+    
+    // حركة الماوس
+    window.addEventListener("mousemove", function (e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        // تحريك النقطة فوراً
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        // تحريك الحلقة (فيها تأخير بسيط بالـ CSS يعطي جمالية)
+        cursorOutline.style.left = `${posX}px`;
+        cursorOutline.style.top = `${posY}px`;
+    });
+
+    // إضافة تأثير التوسع من توكف على الأزرار والروابط
+    const hoverElements = document.querySelectorAll("a, button, .glass-card");
+
+    hoverElements.forEach(function(element) {
+        element.addEventListener("mouseenter", function() {
+            document.body.classList.add("cursor-hover");
+        });
+        
+        element.addEventListener("mouseleave", function() {
+            document.body.classList.remove("cursor-hover");
+        });
+    });
+} else {
+    // إذا جان موبايل، نخفي عناصر الماوس الوهمي
+    if(cursorDot) cursorDot.style.display = "none";
+    if(cursorOutline) cursorOutline.style.display = "none";
+}
 
 // ©️ 2026 RUWAAD TECH - PRO ENGINE V4.0 - ALL SYSTEMS LIVE.

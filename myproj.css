@@ -20,7 +20,7 @@
 
 html{
     scroll-behavior:smooth;
-    cursor:none !important;
+    cursor:auto !important;
 }
 
 body{
@@ -372,4 +372,53 @@ canvas{
     .glass-card{
         padding:2rem !important;
     }
+}
+/* إخفاء الماوس العادي في الشاشات الكبيرة */
+@media (min-width: 768px) {
+    body, a, button, .clickable {
+        cursor: none !important;
+    }
+}
+
+/* تصميم النقطة المركزية */
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #00d2ff; /* لون أزرق نيوني يلوق للتقنية */
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* حتى تكدر تضغط على الأزرار من خلاله */
+    z-index: 10000;
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* تصميم الحلقة الخارجية */
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(0, 210, 255, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    /* هاي تخلي الحلقة تلحق النقطة بنعومة */
+    transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* التفاعل من توكف على زر أو رابط */
+.cursor-hover .cursor-dot {
+    background-color: white;
+}
+
+.cursor-hover .cursor-outline {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 210, 255, 0.1); /* خلفية شفافة خفيفة */
+    border-color: #00d2ff;
 }
