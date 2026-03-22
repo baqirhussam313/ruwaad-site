@@ -5,30 +5,23 @@ window.handleUserInput = () => window.handleChatInteraction();
 
 /**
  * ============================================================
- * 🛡️ RUWAAD TECH - PRO GLOBAL ENGINE V4.0
+ * 🛡️ RUWAAD TECH - PRO GLOBAL ENGINE V4.0 (Clean Cursor)
  * ============================================================
  */
 
-// متغيرات النظام الأساسية
 let botDataMap = new Map();
 let isDataLoaded = false;
 let systemStatus = "Initializing...";
 
-/**
- * الفئة الرئيسية للمحرك البصري (Core Engine)
- */
 class RuwaadGlobalEngine {
     
     constructor() {
-        this.cursorProps = { x: 0, y: 0 };
         this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         this.initCore();
     }
 
     initCore() {
         console.group("%c 🚀 RUWAAD TECH SYSTEM BOOT ", "background:#00d2ff;color:#050a1e;font-weight:bold;padding:10px;");
-        this.createCustomCursor();
-        this.setupEventListeners();
         this.initIntersectionObserver();
         this.initTiltEffect();
         this.initMagneticButtons();
@@ -37,75 +30,6 @@ class RuwaadGlobalEngine {
         this.handleHeaderScroll();
         this.setupStatsCounter();
         console.groupEnd();
-    }
-
-    /* 1. نظام الماوس المخصص (المستقل تماماً والمضمون) */
-    createCustomCursor() {
-        if (this.isMobile) return;
-        
-        // مسح أي ماوس قديم معلق بالصفحة لتجنب التضارب
-        document.querySelectorAll('.cursor-dot, .cursor-outline').forEach(el => el.remove());
-
-        // بناء الماوس برمجياً من الصفر
-        this.cursor = document.createElement("div");
-        this.cursorDot = document.createElement("div");
-
-        // إعطاء خصائص التصميم مباشرة برمجياً (Inline CSS)
-        Object.assign(this.cursor.style, {
-            width: "40px", height: "40px", border: "2px solid rgba(0,210,255,0.5)",
-            borderRadius: "50%", position: "fixed", pointerEvents: "none", zIndex: "9999",
-            transform: "translate(-50%, -50%)", transition: "width 0.2s, height 0.2s, background 0.2s, border 0.2s"
-        });
-
-        Object.assign(this.cursorDot.style, {
-            width: "8px", height: "8px", background: "#00d2ff", borderRadius: "50%",
-            position: "fixed", pointerEvents: "none", zIndex: "10000", transform: "translate(-50%, -50%)"
-        });
-
-        // إضافة الماوس للصفحة
-        document.body.appendChild(this.cursor);
-        document.body.appendChild(this.cursorDot);
-
-        // محرك الحركة
-        window.addEventListener("mousemove", (event) => {
-            const posX = event.clientX; 
-            const posY = event.clientY;
-            
-            // النقطة تتحرك فوراً
-            this.cursorDot.style.left = posX + "px"; 
-            this.cursorDot.style.top = posY + "px";
-            
-            // الحلقة الخارجية تلحقها بنعومة
-            setTimeout(() => {
-                if(this.cursor) {
-                    this.cursor.style.left = posX + "px"; 
-                    this.cursor.style.top = posY + "px";
-                }
-            }, 40);
-        });
-    }
-
-    /* 2. نظام التفاعل مع الروابط (تأثير الهوفر) */
-    setupEventListeners() {
-        const targetElements = "a, button, .glass-card, .clickable, .chat-toggle, .nav-link";
-        document.querySelectorAll(targetElements).forEach(element => {
-            element.addEventListener("mouseenter", () => {
-                if (!this.cursor) return;
-                this.cursor.style.width = "60px"; 
-                this.cursor.style.height = "60px";
-                this.cursor.style.background = "rgba(0,210,255,0.1)"; 
-                this.cursor.style.borderColor = "rgba(0,210,255,1)";
-                if (this.cursorDot) this.cursorDot.style.background = "#ffffff";
-            });
-            element.addEventListener("mouseleave", () => {
-                if (!this.cursor) return;
-                this.cursor.style.width = "40px"; 
-                this.cursor.style.height = "40px";
-                this.cursor.style.background = "transparent"; 
-                this.cursor.style.borderColor = "rgba(0,210,255,0.5)";
-                if (this.cursorDot) this.cursorDot.style.background = "#00d2ff";
-            });
-        });
     }
 
     /* 3. نظام الظهور التدريجي */
@@ -362,4 +286,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 });
-// ©️ 2026 RUWAAD TECH - PRO ENGINE V4.0 - ALL SYSTEMS LIVE.
