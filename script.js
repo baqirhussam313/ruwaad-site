@@ -8,24 +8,7 @@ window.handleUserInput = () => window.handleChatInteraction();
  * 🛡️ RUWAAD TECH - PRO GLOBAL ENGINE V4.0
  * ============================================================
  */
-// --- كود الماوس الاحترافي (في أعلى الملف لضمان عمله) ---
-document.addEventListener("DOMContentLoaded", function () {
-    const cursorDot = document.querySelector(".cursor-dot");
-    const cursorOutline = document.querySelector(".cursor-outline");
 
-    if (cursorDot && cursorOutline) {
-        window.addEventListener("mousemove", function (e) {
-            cursorDot.style.left = e.clientX + "px";
-            cursorDot.style.top = e.clientY + "px";
-            
-            cursorOutline.style.left = e.clientX + "px";
-            cursorOutline.style.top = e.clientY + "px";
-        });
-    }
-});
-// ----------------------------------------------------
-
-// ... (هنا تبدأ باقي أكوادك القديمة مثل البوت وغيرها) ...
 // متغيرات النظام الأساسية
 let botDataMap = new Map();
 let isDataLoaded = false;
@@ -56,44 +39,53 @@ class RuwaadGlobalEngine {
         console.groupEnd();
     }
 
-    /* 1. نظام الماوس المخصص */
+    /* 1. نظام الماوس المخصص (تم التعديل لربطه بكلاسات التصميم فقط) */
     createCustomCursor() {
         if (this.isMobile) return;
-        this.cursor = document.createElement("div");
-        this.cursorDot = document.createElement("div");
-        Object.assign(this.cursor.style, {
-            width: "40px", height: "40px", border: "1.5px solid rgba(0,210,255,0.5)",
-            borderRadius: "50%", position: "fixed", pointerEvents: "none", zIndex: "10000",
-            transform: "translate(-50%, -50%)", transition: "width 0.3s, height 0.3s, background 0.3s, border 0.3s, transform 0.15s ease-out"
-        });
-        Object.assign(this.cursorDot.style, {
-            width: "6px", height: "6px", background: "#00d2ff", borderRadius: "50%",
-            position: "fixed", pointerEvents: "none", zIndex: "10001", transform: "translate(-50%, -50%)"
-        });
-        document.body.appendChild(this.cursor);
-        document.body.appendChild(this.cursorDot);
+        
+        // ربط المحرك بالعناصر الموجودة في HTML
+        this.cursorDot = document.querySelector(".cursor-dot");
+        this.cursor = document.querySelector(".cursor-outline");
+
+        // إنشاء العناصر برمجياً في حال عدم وجودها في HTML
+        if (!this.cursorDot) {
+            this.cursorDot = document.createElement("div");
+            this.cursorDot.className = "cursor-dot";
+            document.body.appendChild(this.cursorDot);
+        }
+        if (!this.cursor) {
+            this.cursor = document.createElement("div");
+            this.cursor.className = "cursor-outline";
+            document.body.appendChild(this.cursor);
+        }
+
         window.addEventListener("mousemove", (event) => {
-            const posX = event.clientX; const posY = event.clientY;
-            this.cursorDot.style.left = `${posX}px`; this.cursorDot.style.top = `${posY}px`;
+            const posX = event.clientX; 
+            const posY = event.clientY;
+            
+            this.cursorDot.style.left = `${posX}px`; 
+            this.cursorDot.style.top = `${posY}px`;
+            
             requestAnimationFrame(() => {
-                this.cursor.style.left = `${posX}px`; this.cursor.style.top = `${posY}px`;
+                this.cursor.style.left = `${posX}px`; 
+                this.cursor.style.top = `${posY}px`;
             });
         });
     }
 
-    /* 2. نظام التفاعل مع الروابط */
+    /* 2. نظام التفاعل مع الروابط (تعديل لإضافة التأثيرات الاحترافية) */
     setupEventListeners() {
         const targetElements = "a, button, .glass-card, .clickable, .chat-toggle, .nav-link";
         document.querySelectorAll(targetElements).forEach(element => {
             element.addEventListener("mouseenter", () => {
-                if (!this.cursor) return;
-                this.cursor.style.width = "75px"; this.cursor.style.height = "75px";
-                this.cursor.style.background = "rgba(0,210,255,0.12)"; this.cursor.style.borderColor = "rgba(0,210,255,1)";
+                document.body.classList.add("cursor-hover");
+                if (this.cursor) this.cursor.classList.add("cursor-hover");
+                if (this.cursorDot) this.cursorDot.classList.add("cursor-hover");
             });
             element.addEventListener("mouseleave", () => {
-                if (!this.cursor) return;
-                this.cursor.style.width = "40px"; this.cursor.style.height = "40px";
-                this.cursor.style.background = "transparent"; this.cursor.style.borderColor = "rgba(0,210,255,0.5)";
+                document.body.classList.remove("cursor-hover");
+                if (this.cursor) this.cursor.classList.remove("cursor-hover");
+                if (this.cursorDot) this.cursorDot.classList.remove("cursor-hover");
             });
         });
     }
@@ -258,7 +250,6 @@ window.handleChatInteraction = async function() {
     // A. المحرك المرن المحلي (CSV Search)
     for (let [key, value] of botDataMap) {
         const cleanKey = key.trim().toLowerCase();
-        // الكشف عن الكلمة المفتاحية داخل الجملة أو العكس لضمان المرونة
         if (userText.includes(cleanKey) || cleanKey.includes(userText)) {
             botReply = value.trim();
             break; 
