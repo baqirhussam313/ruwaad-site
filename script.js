@@ -5,17 +5,22 @@ window.handleUserInput = () => window.handleChatInteraction();
 
 /**
  * ============================================================
- * 🛡️ RUWAAD TECH - PRO GLOBAL ENGINE V4.0 (Clean Cursor)
+ * 🛡️ RUWAAD TECH - PRO GLOBAL ENGINE V4.0
  * ============================================================
  */
 
+// متغيرات النظام الأساسية
 let botDataMap = new Map();
 let isDataLoaded = false;
 let systemStatus = "Initializing...";
 
+/**
+ * الفئة الرئيسية للمحرك البصري (Core Engine)
+ */
 class RuwaadGlobalEngine {
     
     constructor() {
+        this.cursorProps = { x: 0, y: 0 };
         this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         this.initCore();
     }
@@ -192,6 +197,7 @@ window.handleChatInteraction = async function() {
     // A. المحرك المرن المحلي (CSV Search)
     for (let [key, value] of botDataMap) {
         const cleanKey = key.trim().toLowerCase();
+        // الكشف عن الكلمة المفتاحية داخل الجملة أو العكس لضمان المرونة
         if (userText.includes(cleanKey) || cleanKey.includes(userText)) {
             botReply = value.trim();
             break; 
@@ -286,3 +292,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 });
+// ©️ 2026 RUWAAD TECH - PRO ENGINE V4.0 - ALL SYSTEMS LIVE.
