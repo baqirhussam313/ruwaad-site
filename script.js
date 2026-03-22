@@ -39,53 +39,71 @@ class RuwaadGlobalEngine {
         console.groupEnd();
     }
 
-    /* 1. نظام الماوس المخصص (تم التعديل لربطه بكلاسات التصميم فقط) */
+    /* 1. نظام الماوس المخصص (المستقل تماماً والمضمون) */
     createCustomCursor() {
         if (this.isMobile) return;
         
-        // ربط المحرك بالعناصر الموجودة في HTML
-        this.cursorDot = document.querySelector(".cursor-dot");
-        this.cursor = document.querySelector(".cursor-outline");
+        // مسح أي ماوس قديم معلق بالصفحة لتجنب التضارب
+        document.querySelectorAll('.cursor-dot, .cursor-outline').forEach(el => el.remove());
 
-        // إنشاء العناصر برمجياً في حال عدم وجودها في HTML
-        if (!this.cursorDot) {
-            this.cursorDot = document.createElement("div");
-            this.cursorDot.className = "cursor-dot";
-            document.body.appendChild(this.cursorDot);
-        }
-        if (!this.cursor) {
-            this.cursor = document.createElement("div");
-            this.cursor.className = "cursor-outline";
-            document.body.appendChild(this.cursor);
-        }
+        // بناء الماوس برمجياً من الصفر
+        this.cursor = document.createElement("div");
+        this.cursorDot = document.createElement("div");
 
+        // إعطاء خصائص التصميم مباشرة برمجياً (Inline CSS)
+        Object.assign(this.cursor.style, {
+            width: "40px", height: "40px", border: "2px solid rgba(0,210,255,0.5)",
+            borderRadius: "50%", position: "fixed", pointerEvents: "none", zIndex: "9999",
+            transform: "translate(-50%, -50%)", transition: "width 0.2s, height 0.2s, background 0.2s, border 0.2s"
+        });
+
+        Object.assign(this.cursorDot.style, {
+            width: "8px", height: "8px", background: "#00d2ff", borderRadius: "50%",
+            position: "fixed", pointerEvents: "none", zIndex: "10000", transform: "translate(-50%, -50%)"
+        });
+
+        // إضافة الماوس للصفحة
+        document.body.appendChild(this.cursor);
+        document.body.appendChild(this.cursorDot);
+
+        // محرك الحركة
         window.addEventListener("mousemove", (event) => {
             const posX = event.clientX; 
             const posY = event.clientY;
             
-            this.cursorDot.style.left = `${posX}px`; 
-            this.cursorDot.style.top = `${posY}px`;
+            // النقطة تتحرك فوراً
+            this.cursorDot.style.left = posX + "px"; 
+            this.cursorDot.style.top = posY + "px";
             
-            requestAnimationFrame(() => {
-                this.cursor.style.left = `${posX}px`; 
-                this.cursor.style.top = `${posY}px`;
-            });
+            // الحلقة الخارجية تلحقها بنعومة
+            setTimeout(() => {
+                if(this.cursor) {
+                    this.cursor.style.left = posX + "px"; 
+                    this.cursor.style.top = posY + "px";
+                }
+            }, 40);
         });
     }
 
-    /* 2. نظام التفاعل مع الروابط (تعديل لإضافة التأثيرات الاحترافية) */
+    /* 2. نظام التفاعل مع الروابط (تأثير الهوفر) */
     setupEventListeners() {
         const targetElements = "a, button, .glass-card, .clickable, .chat-toggle, .nav-link";
         document.querySelectorAll(targetElements).forEach(element => {
             element.addEventListener("mouseenter", () => {
-                document.body.classList.add("cursor-hover");
-                if (this.cursor) this.cursor.classList.add("cursor-hover");
-                if (this.cursorDot) this.cursorDot.classList.add("cursor-hover");
+                if (!this.cursor) return;
+                this.cursor.style.width = "60px"; 
+                this.cursor.style.height = "60px";
+                this.cursor.style.background = "rgba(0,210,255,0.1)"; 
+                this.cursor.style.borderColor = "rgba(0,210,255,1)";
+                if (this.cursorDot) this.cursorDot.style.background = "#ffffff";
             });
             element.addEventListener("mouseleave", () => {
-                document.body.classList.remove("cursor-hover");
-                if (this.cursor) this.cursor.classList.remove("cursor-hover");
-                if (this.cursorDot) this.cursorDot.classList.remove("cursor-hover");
+                if (!this.cursor) return;
+                this.cursor.style.width = "40px"; 
+                this.cursor.style.height = "40px";
+                this.cursor.style.background = "transparent"; 
+                this.cursor.style.borderColor = "rgba(0,210,255,0.5)";
+                if (this.cursorDot) this.cursorDot.style.background = "#00d2ff";
             });
         });
     }
