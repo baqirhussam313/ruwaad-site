@@ -10,6 +10,18 @@
       "use": "@vercel/static"
     },
     {
+      "src": "web-engineering.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "mobile-apps.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "ai-solutions.html",
+      "use": "@vercel/static"
+    },
+    {
       "src": "myproj.css",
       "use": "@vercel/static"
     },
@@ -30,6 +42,18 @@
     {
       "src": "/logo.png",
       "dest": "/logo.png"
+    },
+    {
+      "src": "/web-engineering.html",
+      "dest": "/web-engineering.html"
+    },
+    {
+      "src": "/mobile-apps.html",
+      "dest": "/mobile-apps.html"
+    },
+    {
+      "src": "/ai-solutions.html",
+      "dest": "/ai-solutions.html"
     },
     {
       "src": "/(.*)",
